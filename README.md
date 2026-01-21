@@ -14,6 +14,24 @@ sudo apt-get install fonts-unfonts-core -y
 sudo apt-get install ibus ibus-hangul -y
 sudo reboot
 ```
+## Add InfluxData repository & key
+```
+sudo apt update
+sudo apt install -y ca-certificates curl gnupg
+```
+
+### Add the signing key:
+```
+curl -fsSL https://repos.influxdata.com/influxdata-archive_compat.key \
+  | sudo gpg --dearmor -o /usr/share/keyrings/influxdata-archive-keyring.gpg
+```
+
+### Add the repository:
+```
+echo "deb [signed-by=/usr/share/keyrings/influxdata-archive-keyring.gpg] \
+https://repos.influxdata.com/ubuntu jammy stable" \
+| sudo tee /etc/apt/sources.list.d/influxdata.list
+```
 
 ## InfluxDB 설치 
   - InfluxDB download key using wget
